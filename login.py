@@ -1,4 +1,4 @@
-from flask import Flask, Blueprint
+from flask import Flask, render_template, request, redirect, url_for, Blueprint
 from flask_sqlalchemy import SQLAlchemy
 from main import app, db
 
@@ -10,11 +10,11 @@ def profile():
 
 @auth.route('/login')
 def login():
-    return 'Login'
+    return render_template('login.html')
 
 @auth.route('/signup')
 def signup():
-    return 'Signup'
+    return render_template('signup.html')
 
 @auth.route('logout')
 def logout():

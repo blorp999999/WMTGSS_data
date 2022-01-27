@@ -1,4 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
+from flask_sqlalchemy import SQLAlchemy
+
 
 # Init application as a Flask app (used in other files/modules)
 app = Flask(__name__)
@@ -12,4 +14,4 @@ Basic Flask index function, returns index page of website
 '''
 @app.route('/')
 def index():
-    return render_template('upload_form.html')
+    return render_template('index.html')
