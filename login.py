@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, Blueprint
+from flask import Flask, render_template, request, redirect, url_for, Blueprint, flash
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 from models import User
@@ -29,6 +29,7 @@ def signup_post():
     user = User.query.filter_by(email=email).first() # Checks if the user email is already within the database
     
     if user: # If the user already exists, redirect back to the signup page so the user can try again
+        flash('This email address is already being used, please create an account with another email address') # Informs user that the email is already present if they enter a previously used email
         return redirect(url_for('auth.signup'))
     
     # Creates a new user with the form data
