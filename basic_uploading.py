@@ -2,8 +2,9 @@ from flask import Flask, render_template, request, redirect, url_for
 from werkzeug.utils import secure_filename
 import os
 import imghdr
+from main import app
 
-app = Flask(__name__)
+
 app.config['MAX_CONTENT_LENGTH'] = 200 * 1024 * 1024 # Security feature, limits the filesize of uploaded files to 200MB to prevent server overload through upload of massive files
 app.config['UPLOAD_EXTENSIONS'] = ['.jpg', '.png', '.mp4', '.doc', '.docx', '.pdf', '.odt', '.html', '.ppt', '.pptx'] # Security feature, limits allowed files to previously specified ones (prevents upload of code files, etc)
 app.config['UPLOAD_PATH'] = 'uploads'
@@ -23,13 +24,6 @@ def validate_image(stream):
     if not format:
         return None
     return '.' + (format if format != 'jpeg' else 'jpg')
-'''
-def index
-Basic Flask index function, returns index page of website
-'''
-@app.route('/')
-def index():
-    return render_template('upload_form.html')
     
 '''
 def upload_files
