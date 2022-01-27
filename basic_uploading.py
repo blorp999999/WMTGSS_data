@@ -5,9 +5,7 @@ import imghdr
 from main import app
 
 
-app.config['MAX_CONTENT_LENGTH'] = 200 * 1024 * 1024 # Security feature, limits the filesize of uploaded files to 200MB to prevent server overload through upload of massive files
-app.config['UPLOAD_EXTENSIONS'] = ['.jpg', '.png', '.mp4', '.doc', '.docx', '.pdf', '.odt', '.html', '.ppt', '.pptx'] # Security feature, limits allowed files to previously specified ones (prevents upload of code files, etc)
-app.config['UPLOAD_PATH'] = 'uploads'
+
 
 '''
 def validate_image

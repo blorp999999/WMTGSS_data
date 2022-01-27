@@ -1,8 +1,9 @@
 from flask import Flask, render_template, request, redirect, url_for, Blueprint, flash
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
-from models import User
-from main import app, db
+from .models import User
+from . import app, db
+from flask_login import login_user
 
 auth = Blueprint('auth', __name__)
 
@@ -13,6 +14,25 @@ def profile():
 @auth.route('/login')
 def login():
     return render_template('login.html')
+
+@auth.route('/login', methods=['POST'])
+def login_post():
+    # Login code
+    email = request.form.get('email')
+    password = request.form.get('password')
+    remember = True if request.form.get('remember') else False
+    
+    user = User.query.filter_by(email=email).first()
+    
+    # Checks if the user actually exists
+    # Takes password entered, hashes it, and compares it to hashed version within database
+    if not user or not check_password_hash(user.password, password):
+        flash('Incorrect username or password, please check your login details and try again.')
+        return redirect(url_for('auth.login')) # If user doesn't exist, or password is incorrect, redirects back to login page
+    
+    login_user(user, remember=remember) # Creates a user session
+    # If all of the above passes, we know the user has the right credentials
+    return redirect(url_for('main.profile'))
 
 @auth.route('/signup')
 def signup():
