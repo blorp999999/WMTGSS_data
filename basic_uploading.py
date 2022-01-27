@@ -8,6 +8,14 @@ app.config['MAX_CONTENT_LENGTH'] = 200 * 1024 * 1024 # Security feature, limits 
 app.config['UPLOAD_EXTENSIONS'] = ['.jpg', '.png', '.mp4', '.doc', '.docx', '.pdf', '.odt', '.html', '.ppt', '.pptx'] # Security feature, limits allowed files to previously specified ones (prevents upload of code files, etc)
 app.config['UPLOAD_PATH'] = 'uploads'
 
+'''
+def validate_image
+Takes uploaded image and validates it to ensure that it is non-malicious
+Inputs: 
+    - stream: Simple python stream input, takes data without use of callback (used over regular variables as is more efficiant)
+Outputs:
+    Outputs format of the file if has non-malicious data, if it is a malicious image, refuses to output it
+'''
 def validate_image(stream):
     header = stream.read(512)
     stream.seek(0)
@@ -15,12 +23,18 @@ def validate_image(stream):
     if not format:
         return None
     return '.' + (format if format != 'jpeg' else 'jpg')
-
+'''
+def index
+Basic Flask index function, returns index page of website
+'''
 @app.route('/')
 def index():
     return render_template('upload_form.html')
     
-
+'''
+def upload_files
+Upload function, takes uploaded files, confirms whether they are of the correct filetype, and uploads them if everything is correct, then redirects to index page
+'''
 @app.route('/', methods=['POST'])
 def upload_files():
     uploaded_file = request.files['file']
