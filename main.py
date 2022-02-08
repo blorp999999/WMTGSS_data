@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, Blueprint
 from flask_login import login_required, current_user
 from . import db
+import pytest
 
 
 '''

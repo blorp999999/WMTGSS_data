@@ -1,5 +1,6 @@
 from . import db
 from flask_login import UserMixin
+import pytest
 
 class User(UserMixin, db.model):
     id = db.Column(db.Integer, primary_key=True) # User ID, used as the primary key within the user database

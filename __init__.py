@@ -2,6 +2,8 @@ from flask import Flask, render_template, request, redirect, url_for, Blueprint
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 import os
+import pytest
+
 
 # Init application as a Flask app (used in other files/modules)
 app = Flask(__name__)

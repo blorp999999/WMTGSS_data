@@ -4,6 +4,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from .models import User
 from . import app, db
 from flask_login import login_user, login_required, logout_user
+import pytest
 
 auth = Blueprint('auth', __name__)
 
