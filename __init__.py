@@ -1,13 +1,20 @@
 from flask import Flask, render_template, request, redirect, url_for, Blueprint
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
-
+import os
 
 # Init application as a Flask app (used in other files/modules)
 app = Flask(__name__)
 
 # init SQLAlchemy for later use
 db = SQLAlchemy()
+dbf = SQLAlchemy()
+
+UPLOAD_DIRECTORY = '/WMGTSS_uploaded_files'
+
+# Check if the file storage location exists, if it does not, creates it
+if not os.path.exists(UPLOAD_DIRECTORY):
+    os.makedirs(UPLOAD_DIRECTORY)
 
 
 def create_app():
@@ -40,6 +47,6 @@ def create_app():
     app.register_blueprint(mb)
     
     return app
-    
-    
 
+if __name__ == '__init__':
+    app.run() # Runs Flask app

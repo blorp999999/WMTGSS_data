@@ -6,3 +6,4 @@ class User(UserMixin, db.model):
     email = db.Column(db.String, unique=True) # User Email, has to be unique
     password = db.Column(db.String(100)) # User Password, has to be hashed
     name = db.Column(db.String(1000)) # User name
+    user_type = db.Column(db.String(8)) # User Type
