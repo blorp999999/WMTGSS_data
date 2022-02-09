@@ -10,7 +10,7 @@ def test_new_user():
     THEN check the email, password (which should be hashed), name, and role fields are correctly defined (User ID is not included in this as it is not created by the user)
     '''
     
-    user = User('joebloggs@gmail.com', 'Password')
+    user = User()
     assert user.email == 'joebloggs@gmail.com'
     assert user.password != 'Password'
     assert user.name == 'Joe Bloggs'

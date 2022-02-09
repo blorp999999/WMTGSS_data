@@ -15,11 +15,13 @@ dbf = SQLAlchemy()
 UPLOAD_DIRECTORY = '/WMGTSS_uploaded_files'
 
 # Check if the file storage location exists, if it does not, creates it
-if not os.path.exists(UPLOAD_DIRECTORY):
-    os.makedirs(UPLOAD_DIRECTORY)
+#if not os.path.exists(UPLOAD_DIRECTORY):
+    #os.makedirs(UPLOAD_DIRECTORY)
 
 
 def create_app():
+    from flask import Flask
+
     app = Flask(__name__)
     
     app.config['MAX_CONTENT_LENGTH'] = 200 * 1024 * 1024 # Security feature, limits the filesize of uploaded files to 200MB to prevent server overload through upload of massive files
@@ -42,11 +44,11 @@ def create_app():
     
     db.init_app(app)
     
-    from .auth import auth as ab 
-    app.register_blueprint(ab)
+    from .login import auth as ab 
+    #app.register_blueprint(ab)
     
-    from Flask.main import main as mb
-    app.register_blueprint(mb)
+
+    #app.register_blueprint(Flask.main)
     
     return app
 
