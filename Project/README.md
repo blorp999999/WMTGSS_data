@@ -1,0 +1,1 @@
+Note: HTML files are currently just template ones taken from Internet, final versions will differ (and will be created to match designs)
